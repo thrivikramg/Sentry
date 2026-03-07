@@ -1,0 +1,40 @@
+# DSS Framework Configuration
+
+system:
+  target_fps: 30
+  log_level: "INFO"
+  
+perception:
+  model_id: "yolov8n.pt"  # Nano model for >15 FPS real-time speed
+  confidence_threshold: 0.3
+  target_classes: [] # empty implies detect ALL trained COCO classes (humans, dogs, trucks etc)
+  roi:
+    crop_bottom_percent: 25  # Remove dashboard/hood
+    crop_top_percent: 0
+  depth_model: "MiDaS_small"  # Enable Monocular Depth Estimation
+  focal_length_pseudo: 500.0  # Pseudo focal length for BEV projection
+
+tracking:
+  max_trajectory_history: 30 # frames
+
+behavioral_engine:
+  weights:
+    w1: 0.3  # velocity weight
+    w2: 0.2  # acceleration weight
+    w3: 0.4  # TTC weight
+    w4: 0.1  # curvature weight
+  
+  aggression_threshold: 0.7
+  collision_warning_seconds: 1.0 # Alert 1s before impact
+  
+dynamic_stability_score:
+  decay_factor_lambda: 0.90
+  initial_score: 50.0  # Scale 0-100
+  score_min: 0.0
+  score_max: 100.0
+  stable_reward: 1.0
+  aggressive_penalty: -2.0
+
+ui:
+  show_video: true
+  show_dss_graph: true

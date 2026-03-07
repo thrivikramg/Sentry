@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+data/
+yolov8n.pt
+yolov8s-worldv2.pt
+*.mp4
+*.csv
+plots/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+*.pdf
